@@ -39,9 +39,15 @@ jobs:
           build-args: |
             GIT_HASH=${{ steps.git_hash.outputs.hash }}
 
-  helm-package:
+  helm-release:
     needs: test
     runs-on: ubuntu-latest
     steps:
-    - name: echo
-      run: echo "helm lint && helm template"
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.7.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

@@ -38,9 +38,9 @@ jobs:
     - name: Setup Helm
       uses: azure/setup-helm@v4
     - name: Lint Helm chart
-      run: helm lint ./chart
+      run: helm lint ./charts/ionos-dns-operator
     - name: Template Helm chart
-      run: helm template test ./chart --namespace test-ns
+      run: helm template test ./charts/ionos-dns-operator --namespace test-ns
 
   docker:
     needs: test
