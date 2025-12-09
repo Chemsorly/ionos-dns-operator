@@ -40,7 +40,7 @@ jobs:
             GIT_HASH=${{ steps.git_hash.outputs.hash }}
 
   helm-release:
-    needs: test
+    needs: docker
     runs-on: ubuntu-latest
     steps:
       - name: Configure Git
