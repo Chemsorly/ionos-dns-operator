@@ -1,7 +1,10 @@
 # ionos-dns-operator
 Little kubernetes operator based on .NET 10 and [Kubeops dotnet-operator](https://github.com/dotnet/dotnet-operator-sdk). It brings its own CRD [C#](./IonosDnsOperator/Entities/IonosDnsRecord.cs)/[YAML](./IonosDnsOperator/example-ionosdnsrecord.yaml), which is synced with the [IONOS DNS Api](https://developer.hosting.ionos.com/docs/dns). Provides reconciliation and finalizer support. Uses ValidatingWebhookConfiguration to enforce immutability on Spec.RootName, Spec.Name and Spec.Type.
 
-# Requirements
+# Getting started
+Helm chart requires a cert-manager deployment or manually added certificate for the webhook.
+
+# Development
 - .NET 10.0 or later
 - ([Get your IONOS API key here](https://developer.hosting.ionos.com/docs/getstarted))
 

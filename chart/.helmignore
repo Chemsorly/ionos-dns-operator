@@ -1,0 +1,5 @@
+*.md
+.git/
+.gitignore
+helm-conversion-plan.md
+helm-scratchpad.yaml

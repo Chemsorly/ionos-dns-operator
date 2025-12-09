@@ -1,0 +1,32 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: {{ include "ionos-dns-operator.fullname" . }}-validators
+  {{- if .Values.certManager.enabled }}
+  annotations:
+    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{ include "ionos-dns-operator.fullname" . }}-webhook-cert
+  {{- end }}
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    {{- if not .Values.certManager.enabled }}
+    caBundle: {{ .Values.webhook.caBundle | required "webhook.caBundle required when certManager disabled" }}
+    {{- end }}
+    service:
+      name: {{ include "ionos-dns-operator.fullname" . }}
+      namespace: {{ .Release.Namespace }}
+      path: /validate/ionosdnsrecord
+  matchPolicy: Exact
+  name: validate.ionosdnsrecord.ionos-dns-operator.chemsorly.com.v1
+  rules:
+  - apiGroups:
+    - ionos-dns-operator.chemsorly.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - ionosdnsrecords
+  sideEffects: None

@@ -11,7 +11,7 @@ using System.Text;
 
 namespace IonosDnsOperator.Finalizers;
 
-public class IonosDnsRecordFinalizer(ILogger<IonosDnsRecordFinalizer> logger, IDnsSyncService dnsSyncService, IKubernetesClient kubernetesClient) : IEntityFinalizer<IonosDnsRecord>
+public class IonosDnsRecordFinalizer(ILogger<IonosDnsRecordFinalizer> logger, IDnsSyncService dnsSyncService) : IEntityFinalizer<IonosDnsRecord>
 {
 	public async Task<ReconciliationResult<IonosDnsRecord>> FinalizeAsync(IonosDnsRecord entity, CancellationToken cancellationToken)
 	{
