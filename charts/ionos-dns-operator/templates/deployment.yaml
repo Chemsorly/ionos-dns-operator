@@ -22,6 +22,11 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: Ionos__ApiKey
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.ionos.existingSecret | default (printf "%s-ionos" (include "ionos-dns-operator.fullname" .)) }}
+              key: apiKey
         envFrom:
         - configMapRef:
             name: {{ include "ionos-dns-operator.fullname" . }}-webhook-config

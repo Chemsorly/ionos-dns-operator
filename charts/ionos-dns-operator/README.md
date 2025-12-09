@@ -14,6 +14,8 @@ The following table lists the configurable parameters of the chart and their def
 | `replicaCount` | Number of replicas | `1` |
 | `serviceAccount.create` | Create service account | `true` |
 | `serviceAccount.name` | Service account name (auto-generated if empty) | `""` |
+| `ionos.apiKey` | IONOS DNS API key | `""` |
+| `ionos.existingSecret` | Name of existing secret containing apiKey | `""` |
 | `certManager.enabled` | Use cert-manager for certificates | `true` |
 | `certManager.issuerName` | cert-manager Issuer name | `selfsigned-issuer` |
 | `webhook.caBundle` | Base64 CA bundle (when certManager disabled) | `""` |
@@ -26,6 +28,28 @@ The following table lists the configurable parameters of the chart and their def
 | `resources.limits.memory` | Memory limit | `128Mi` |
 | `resources.requests.cpu` | CPU request | `100m` |
 | `resources.requests.memory` | Memory request | `64Mi` |
+
+## IONOS API Key
+
+### Option 1: Provide API key directly
+```bash
+helm install ionos-dns-operator ./charts/ionos-dns-operator \
+  --set ionos.apiKey=YOUR_API_KEY \
+  -n ionos-dns-operator --create-namespace
+```
+
+### Option 2: Use existing secret
+```bash
+# Create secret with apiKey key
+kubectl create secret generic ionos-api-secret \
+  --from-literal=apiKey=YOUR_API_KEY \
+  -n ionos-dns-operator
+
+# Install chart referencing the secret
+helm install ionos-dns-operator ./charts/ionos-dns-operator \
+  --set ionos.existingSecret=ionos-api-secret \
+  -n ionos-dns-operator --create-namespace
+```
 
 ## More Information
 

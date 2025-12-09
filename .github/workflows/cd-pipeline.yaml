@@ -35,13 +35,26 @@ jobs:
         with:
           context: .
           push: true
-          tags: chemsorly/ionos-dns-operator:${{ github.ref_name }},chemsorly/ionos-dns-operator:${{ steps.git_hash.outputs.hash }},chemsorly/ionos-dns-operator:latest
+          tags: chemsorly/ionos-dns-operator:${{ github.ref_name }},chemsorly/ionos-dns-operator:latest
           build-args: |
             GIT_HASH=${{ steps.git_hash.outputs.hash }}
 
-  helm-package:
-    needs: test
+  helm-release:
+    # https://github.com/marketplace/actions/helm-chart-releaser
+    permissions:
+      contents: write
+    needs: docker
     runs-on: ubuntu-latest
     steps:
-    - name: echo
-      run: echo "helm lint && helm template"
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.7.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
