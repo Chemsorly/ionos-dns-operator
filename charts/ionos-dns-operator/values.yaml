@@ -14,6 +14,10 @@ certManager:
   enabled: true
   issuerName: selfsigned-issuer
 
+ionos:
+  apiKey: ""  # IONOS DNS API key (required)
+  existingSecret: ""  # Name of existing secret containing 'apiKey' key
+
 webhook:
   # Used only if certManager.enabled=false
   caBundle: ""  # Base64 encoded CA certificate
