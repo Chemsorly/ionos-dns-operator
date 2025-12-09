@@ -12,4 +12,4 @@ COPY --chown=app:app --from=build /operator/out/ ./
 
 USER app
 
-ENTRYPOINT [ "dotnet", "operator.dll" ]
+ENTRYPOINT [ "dotnet", "IonosDnsOperator.dll" ]
