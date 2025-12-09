@@ -45,6 +45,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build
-        uses: docker/build-action@v6
+        uses: docker/build-push-action@v6
         with:
           context: .
+          push: false
