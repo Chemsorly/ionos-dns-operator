@@ -1,0 +1,13 @@
+apiVersion: ionos-dns-operator.chemsorly.com/v1
+kind: IonosDnsRecord
+metadata:
+  name: example-dns-record
+  namespace: default
+spec:
+  rootName: example.com
+  name: www
+  type: A
+  content: 192.168.1.1
+  ttl: 3600
+  prio: 10
+  disabled: false

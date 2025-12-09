@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>true</ImplicitUsings>
+        <IsPackable>false</IsPackable>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+        <RootNamespace>IonosDnsOperator</RootNamespace>
+    </PropertyGroup>
+
+    <!-- Operator artifact config -->
+    <PropertyGroup>
+      <OperatorName>ionos-dns-operator</OperatorName>
+      <DockerImage>chemsorly/ionos-dns-operator</DockerImage>
+      <DockerImageTag>0.0.1</DockerImageTag>
+      <!-- Disable automatic generation in Debug mode -->
+      <GenerateOperatorResources Condition="'$(Configuration)' == 'Release'">true</GenerateOperatorResources>
+      <GenerateOperatorResources Condition="'$(Configuration)' == 'Debug'">false</GenerateOperatorResources>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="appsettings.json" />
+      <None Remove="appsettings.local.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="appsettings.local.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="KubeOps.Generator" Version="10.0.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="KubeOps.Operator" Version="10.0.1" />
+      <PackageReference Include="KubeOps.Operator.Web" Version="10.0.1" />
+      <PackageReference Include="Riok.Mapperly" Version="4.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\lib\IonosDns\IonosDns.csproj" />
+    </ItemGroup>
+
+</Project>

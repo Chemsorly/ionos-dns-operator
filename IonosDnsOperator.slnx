@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/lib/">
+    <Project Path="lib/IonosDns.Tests/IonosDns.Tests.csproj" />
+    <Project Path="lib/IonosDns/IonosDns.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="Dockerfile" />
+    <File Path="renovate.json" />
+  </Folder>
+  <Project Path="IonosDnsOperator.Tests/IonosDnsOperator.Tests.csproj" />
+  <Project Path="IonosDnsOperator/IonosDnsOperator.csproj" />
+</Solution>
