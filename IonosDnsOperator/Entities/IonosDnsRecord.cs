@@ -19,21 +19,27 @@ public class IonosDnsRecord : CustomKubernetesEntity<IonosDnsRecord.EntitySpec, 
 
 		[Required]
 		[Description("The record name")]
+		[AdditionalPrinterColumn]
 		public string Name { get; init; } = String.Empty;
 
 		[Required]
 		[Description("The record type")]
+		[AdditionalPrinterColumn]
 		public RecordType Type { get; init; } = RecordType.UNKNOWN;
 
 		[Required]
 		[Description("The content of the record")]
+		[AdditionalPrinterColumn]
 		public string Content { get; init; } = String.Empty;
 
 		[Description("The time to live for the record")]
+		[AdditionalPrinterColumn]
 		public int? Ttl { get; init; } = 3600;
 
 		public int? Prio { get; init; }
 
+		[Description("The state of the record")]
+		[AdditionalPrinterColumn]
 		public bool Disabled { get; init; }
 	}
 

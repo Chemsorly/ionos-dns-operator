@@ -19,6 +19,32 @@ spec:
       name: dnsRecordStatus
       priority: 0
       type: string
+    - description: The record name
+      jsonPath: .spec.name
+      name: name
+      priority: 0
+      type: string
+    - description: The record type
+      jsonPath: .spec.type
+      name: type
+      priority: 0
+      type: string
+    - description: The content of the record
+      jsonPath: .spec.content
+      name: content
+      priority: 0
+      type: string
+    - description: The time to live for the record
+      format: int32
+      jsonPath: .spec.ttl
+      name: ttl
+      priority: 0
+      type: integer
+    - description: The state of the record
+      jsonPath: .spec.disabled
+      name: disabled
+      priority: 0
+      type: boolean
     name: v1
     schema:
       openAPIV3Schema:
@@ -92,6 +118,7 @@ spec:
                 nullable: true
                 type: integer
               disabled:
+                description: The state of the record
                 type: boolean
             required:
             - rootName
