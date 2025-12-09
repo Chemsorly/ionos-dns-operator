@@ -1,7 +1,7 @@
 apiVersion: v2
 name: ionos-dns-operator
-version: 0.0.1
-appVersion: 0.0.1
+version: 0.0.5
+appVersion: 0.0.5
 description: Kubernetes operator for IONOS DNS management
 maintainers:
   - name: chemsorly
