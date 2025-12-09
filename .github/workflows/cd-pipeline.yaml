@@ -8,7 +8,10 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/ci-pipeline.yaml
-
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      
   docker:
     needs: test
     runs-on: ubuntu-latest
