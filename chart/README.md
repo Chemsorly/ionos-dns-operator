@@ -1,0 +1,33 @@
+# ionos-dns-operator Helm Chart
+
+Kubernetes operator for IONOS DNS management based on .NET 10 and KubeOps.
+
+## Configuration
+
+The following table lists the configurable parameters of the chart and their default values.
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `image.repository` | Container image repository | `chemsorly/ionos-dns-operator` |
+| `image.tag` | Container image tag | `v0.0.1` |
+| `image.pullPolicy` | Image pull policy | `IfNotPresent` |
+| `replicaCount` | Number of replicas | `1` |
+| `serviceAccount.create` | Create service account | `true` |
+| `serviceAccount.name` | Service account name (auto-generated if empty) | `""` |
+| `certManager.enabled` | Use cert-manager for certificates | `true` |
+| `certManager.issuerName` | cert-manager Issuer name | `selfsigned-issuer` |
+| `webhook.caBundle` | Base64 CA bundle (when certManager disabled) | `""` |
+| `webhook.secretName` | Secret name for certificates (when certManager disabled) | `""` |
+| `webhook.config.httpUrl` | HTTP endpoint URL | `http://0.0.0.0:5000` |
+| `webhook.config.httpsUrl` | HTTPS endpoint URL | `https://0.0.0.0:5001` |
+| `webhook.config.certPath` | Certificate file path | `/certs/tls.crt` |
+| `webhook.config.keyPath` | Private key file path | `/certs/tls.key` |
+| `resources.limits.cpu` | CPU limit | `100m` |
+| `resources.limits.memory` | Memory limit | `128Mi` |
+| `resources.requests.cpu` | CPU request | `100m` |
+| `resources.requests.memory` | Memory request | `64Mi` |
+
+## More Information
+
+- [GitHub Repository](https://github.com/Chemsorly/ionos-dns-operator)
+- [IONOS DNS API Documentation](https://developer.hosting.ionos.com/docs/dns)

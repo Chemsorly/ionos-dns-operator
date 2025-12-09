@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ionos-dns-operator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "ionos-dns-operator.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      {{- include "ionos-dns-operator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "ionos-dns-operator.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        envFrom:
+        - configMapRef:
+            name: {{ include "ionos-dns-operator.fullname" . }}-webhook-config
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: operator
+        ports:
+        - containerPort: 5001
+          name: https
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        volumeMounts:
+        - mountPath: /certs
+          name: certificates
+          readOnly: true
+      serviceAccountName: {{ include "ionos-dns-operator.serviceAccountName" . }}
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: certificates
+        secret:
+          {{- if .Values.certManager.enabled }}
+          secretName: {{ include "ionos-dns-operator.fullname" . }}-webhook-cert
+          {{- else }}
+          secretName: {{ .Values.webhook.secretName | required "webhook.secretName required when certManager disabled" }}
+          {{- end }}

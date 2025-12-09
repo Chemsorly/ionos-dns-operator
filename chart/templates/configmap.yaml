@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ionos-dns-operator.fullname" . }}-webhook-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "ionos-dns-operator.labels" . | nindent 4 }}
+data:
+  KESTREL__ENDPOINTS__HTTP__URL: {{ .Values.webhook.config.httpUrl | quote }}
+  KESTREL__ENDPOINTS__HTTPS__URL: {{ .Values.webhook.config.httpsUrl | quote }}
+  KESTREL__ENDPOINTS__HTTPS__CERTIFICATE__PATH: {{ .Values.webhook.config.certPath | quote }}
+  KESTREL__ENDPOINTS__HTTPS__CERTIFICATE__KEYPATH: {{ .Values.webhook.config.keyPath | quote }}

@@ -1,0 +1,35 @@
+createNamespace: false
+image:
+  repository: chemsorly/ionos-dns-operator
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+serviceAccount:
+  create: true
+  name: ""  # Auto-generated if empty
+
+certManager:
+  enabled: true
+  issuerName: selfsigned-issuer
+
+webhook:
+  # Used only if certManager.enabled=false
+  caBundle: ""  # Base64 encoded CA certificate
+  secretName: ""  # Name of secret containing tls.crt and tls.key
+  config:
+    httpUrl: "http://0.0.0.0:5000"
+    httpsUrl: "https://0.0.0.0:5001"
+    certPath: "/certs/tls.crt"  # cert-manager default
+    keyPath: "/certs/tls.key"   # cert-manager default
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 64Mi
+
+

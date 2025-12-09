@@ -1,0 +1,15 @@
+Thank you for installing {{ .Chart.Name }}!
+
+Your release is named {{ .Release.Name }}.
+
+{{- if .Values.certManager.enabled }}
+Certificate management: cert-manager (enabled)
+{{- else }}
+Certificate management: Manual (provide webhook.caBundle in values)
+{{- end }}
+
+To get the status of the operator:
+  kubectl get deployment {{ include "ionos-dns-operator.fullname" . }} -n {{ .Release.Namespace }}
+
+To view logs:
+  kubectl logs -l app.kubernetes.io/name={{ include "ionos-dns-operator.name" . }} -n {{ .Release.Namespace }}

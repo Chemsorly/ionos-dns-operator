@@ -12,12 +12,11 @@ public class IonosDnsRecordFinalizerTests
 {
     private readonly Mock<ILogger<IonosDnsRecordFinalizer>> _loggerMock = new();
     private readonly Mock<IDnsSyncService> _dnsSyncServiceMock = new();
-    private readonly Mock<IKubernetesClient> _kubernetesClientMock = new();
     private readonly IonosDnsRecordFinalizer _finalizer;
 
     public IonosDnsRecordFinalizerTests()
     {
-        _finalizer = new IonosDnsRecordFinalizer(_loggerMock.Object, _dnsSyncServiceMock.Object, _kubernetesClientMock.Object);
+        _finalizer = new IonosDnsRecordFinalizer(_loggerMock.Object, _dnsSyncServiceMock.Object);
     }
 
     [Fact]
