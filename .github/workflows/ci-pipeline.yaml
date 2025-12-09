@@ -23,8 +23,14 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-    - name: echo
-      run: echo "helm lint && helm template"
+    - name: Checkout
+      uses: actions/checkout@v5
+    - name: Setup Helm
+      uses: azure/setup-helm@v4
+    - name: Lint Helm chart
+      run: helm lint ./chart
+    - name: Template Helm chart
+      run: helm template test ./chart --namespace test-ns
 
   docker:
     needs: test
