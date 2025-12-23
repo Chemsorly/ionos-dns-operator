@@ -39,7 +39,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="KubeOps.Operator" Version="10.0.1" />
+      <PackageReference Include="KubeOps.Operator" Version="10.0.4" />
       <PackageReference Include="KubeOps.Operator.Web" Version="10.0.1" />
       <PackageReference Include="Riok.Mapperly" Version="4.3.0" />
     </ItemGroup>
