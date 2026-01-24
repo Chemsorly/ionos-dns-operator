@@ -15,6 +15,7 @@
       <OperatorName>ionos-dns-operator</OperatorName>
       <DockerImage>chemsorly/ionos-dns-operator</DockerImage>
       <DockerImageTag>0.0.1</DockerImageTag>
+      <KubeOpsCli>dotnet tool run kubeops</KubeOpsCli>
       <!-- Disable automatic generation in Debug mode -->
       <GenerateOperatorResources Condition="'$(Configuration)' == 'Release'">true</GenerateOperatorResources>
       <GenerateOperatorResources Condition="'$(Configuration)' == 'Debug'">false</GenerateOperatorResources>
