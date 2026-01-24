@@ -35,13 +35,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="KubeOps.Generator" Version="10.0.1">
+      <PackageReference Include="KubeOps.Generator" Version="10.2.1">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="KubeOps.Operator" Version="10.0.1" />
-      <PackageReference Include="KubeOps.Operator.Web" Version="10.0.1" />
-      <PackageReference Include="Riok.Mapperly" Version="4.3.0" />
+      <PackageReference Include="KubeOps.Operator" Version="10.2.1" />
+      <PackageReference Include="KubeOps.Operator.Web" Version="10.2.1" />
+      <PackageReference Include="Riok.Mapperly" Version="4.3.1" />
     </ItemGroup>
 
     <ItemGroup>
